@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I'm Sorry ❤️</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #121212; /* Warna latar belakang gelap */
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        color: white;
+        text-align: center;
+      }
+
+      #heart {
+        font-size: 100px;
+        animation: shake 0.5s infinite;
+        transition: color 1s;
+        display: none; /* Sembunyikan hati pada awalnya */
+      }
+
+      #message {
+        font-size: 24px;
+        opacity: 0;
+        transition: opacity 1s;
+        margin-top: 20px;
+        animation: fadeIn 1s forwards; /* Tambahkan animasi fadeIn */
+      }
+
+      #photo {
+        display: none; /* Sembunyikan foto pada awalnya */
+        margin-top: 20px;
+        max-width: 300px;
+        border-radius: 10px;
+        animation: slideIn 1s forwards; /* Tambahkan animasi slideIn */
+      }
+
+      .button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #ff4081; /* Warna tombol */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+        position: relative;
+      }
+
+      .button:hover {
+        background-color: #ff79b0; /* Warna tombol saat hover */
+      }
+
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translate(0);
+        }
+        25% {
+          transform: translate(-10px, -10px);
+        }
+        50% {
+          transform: translate(10px, 10px);
+        }
+        75% {
+          transform: translate(-10px, 10px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button id="forgiveButton" class="button">Maafkan Aku</button>
+      <button id="noButton" class="button">Tidak</button>
+      <div id="heart">❤️</div>
+      <div id="message">Maaf ya, sayang! 🥺</div>
+      <img id="photo" src="foto-mikel.jpeg" alt="Foto Cantik" />
+    </div>
+
+    <audio id="sound" src="https://www.soundjay.com/button/sounds/button-3.mp3" preload="auto"></audio>
+
+    <script>
+      const heart = document.getElementById('heart');
+      const message = document.getElementById('message');
+      const sound = document.getElementById('sound');
+      const forgiveButton = document.getElementById('forgiveButton');
+      const noButton = document.getElementById('noButton');
+      const photo = document.getElementById('photo');
+
+      // Fungsi untuk menampilkan hati, pesan, dan foto
+      function showApology() {
+        heart.style.display = 'block'; // Tampilkan hati
+        heart.style.animation = 'none'; // Hentikan animasi shake
+        heart.style.color = 'pink'; // Ubah warna hati
+        heart.innerHTML = '😍'; // Ubah emoji hati
+        message.style.opacity = '1'; // Tampilkan pesan
+        photo.style.display = 'block'; // Tampilkan foto
+        sound.play(); // Mainkan suara
+
+        // Sembunyikan tombol "Maafkan Aku"
+        forgiveButton.style.display = 'none';
+        // Sembunyikan tombol "Tidak"
+        noButton.style.display = 'none';
+      }
+
+      // Event listener untuk tombol "Maafkan Aku"
+      forgiveButton.addEventListener('click', showApology);
+
+      // Event listener untuk tombol "Tidak"
+      noButton.addEventListener('click', () => {
+        // Pindahkan tombol "Tidak" ke tempat baru
+        const randomX = Math.floor(Math.random() * 200) - 100; // Pindah ke sumbu X
+        const randomY = Math.floor(Math.random() * 200) - 100; // Pindah ke sumbu Y
+        noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      });
+    </script>
+  </body>
+</html>
